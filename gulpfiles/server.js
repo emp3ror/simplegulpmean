@@ -21,14 +21,10 @@ var gulp = require('gulp'),
  * $ gulp
  * description: start the development environment
  */
- gulp.task('launch-server', function() {
- 	gulp.run('server')
+ gulp.task('launch-server',['inject','watch-folder','server'], function() {
+  	gulp.watch(['./server/server.js', './server/app/**/*.js'],['server']);
 
- 	gulp.watch(['./server/server.js', './server/app/**/*.js'], function() {
- 		gulp.run('server')
- 	}); 
-
- })
+  })
 
 // clean up if an error goes unhandled.
 process.on('exit', function() {
